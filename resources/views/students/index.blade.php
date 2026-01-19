@@ -25,8 +25,7 @@
                     <td>BS Computer Science</td>
                     <td>3rd Year</td>
                     <td>
-                        <a href="{{ url('/students/1') }}" class="btn btn-primary btn-sm">View</a>
-                        <a href="{{ url('/students/1/edit') }}" class="btn btn-warning btn-sm text-white">Edit</a>
+                        <x-action-btn :id="1" />
                     </td>
                 </tr>
                 <tr>
@@ -34,8 +33,7 @@
                     <td>BS Info Tech</td>
                     <td>2nd Year</td>
                     <td>
-                        <a href="{{ url('/students/1') }}" class="btn btn-primary btn-sm">View</a>
-                        <a href="{{ url('/students/1/edit') }}" class="btn btn-warning btn-sm text-white">Edit</a>
+                        <x-action-btn :id="1" />
                     </td>
                 </tr>
             </tbody>
