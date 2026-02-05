@@ -1,28 +1,17 @@
 <?php
 
 use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\StudentController;
 
-// Home Page
 Route::get('/', function () {
-    return view('welcome');
+    return view('home');
 });
 
-// Student List
-Route::get('/students', function () {
-    return view('students.index');
-});
+// Student Routes
+Route::get('/students', [StudentController::class, 'index']); // List
+Route::get('/students/create', [StudentController::class, 'create']); // Form
+Route::post('/students', [StudentController::class, 'store']); // Save Action
 
-// Add Student Form
-Route::get('/students/create', function () {
-    return view('students.create');
-});
-
-// View Student Profile (Static ID for demo)
-Route::get('/students/1', function () {
-    return view('students.show');
-});
-
-// Edit Student Form (Static ID for demo)
-Route::get('/students/1/edit', function () {
-    return view('students.edit');
-});
+// Keep these placeholders for now until you implement View/Edit logic fully
+Route::get('/students/{id}', function($id) { return view('students.show'); });
+Route::get('/students/{id}/edit', function($id) { return view('students.edit'); });

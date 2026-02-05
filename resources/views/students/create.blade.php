@@ -1,40 +1,47 @@
 @extends('layout')
 
-@section('title', 'Add New Student')
+@section('title', 'Student List')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow-sm border-0">
-            <div class="card-header card-header-custom">
-                <h4 class="mb-0">Add New Student</h4>
-            </div>
-            <div class="card-body p-4">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" placeholder="e.g. Miguel James">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" placeholder="e.g. miguel.james@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Course</label>
-                        <input type="text" class="form-control" placeholder="e.g. BS Computer Science">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Year Level</label>
-                        <input type="number" class="form-control" placeholder="e.g. 3">
-                    </div>
-                    
-                    <div class="d-flex justify-content-end">
-                        <a href="{{ url('/students') }}" class="btn btn-secondary me-2">Cancel</a>
-                        <button type="button" class="btn btn-success">Save Student</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<div class="d-flex justify-content-between align-items-center mb-4">
+    <h2 class="text-primary-custom">Student List</h2>
+    <a href="{{ url('/students/create') }}" class="btn btn-success shadow-sm">
+        <i class="bi bi-plus-lg me-1"></i> Add New Student
+    </a>
+</div>
+
+<div class="card shadow-sm border-0">
+    <div class="card-body p-0">
+        <table class="table table-striped table-hover mb-0">
+            <thead style="background-color: #2c3e50; color: white;">
+                <tr>
+                    <th class="py-3 px-4">Name</th>
+                    <th class="py-3">Course</th>
+                    <th class="py-3">Year Level</th>
+                    <th class="py-3">Actions</th>
+                </tr>
+            </thead>
+            <tbody>
+                @if($students->count() > 0)
+                    @foreach ($students as $student)
+                    <tr>
+                        <td class="px-4 fw-bold">{{ $student->name }}</td>
+                        <td>{{ $student->course }}</td>
+                        <td>{{ $student->year_level }}</td>
+                        <td>
+                            <x-action-btn :id="$student->id" />
+                        </td>
+                    </tr>
+                    @endforeach
+                @else
+                    <tr>
+                        <td colspan="4" class="text-center py-4 text-muted">
+                            No students found. Click "Add New Student" to create one.
+                        </td>
+                    </tr>
+                @endif
+            </tbody>
+        </table>
     </div>
 </div>
 @endsection
