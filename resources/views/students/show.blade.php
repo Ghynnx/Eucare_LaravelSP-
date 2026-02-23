@@ -3,35 +3,30 @@
 @section('title', 'Student Profile')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow-sm border-0">
-            <div class="card-header card-header-custom">
-                <h4 class="mb-0">Student Profile</h4>
-            </div>
-            <div class="card-body p-4">
-                <h2 class="mb-1">Miguel James</h2>
-                <p class="text-muted">BS Computer Science</p>
-                <hr>
-                
-                <div class="mb-3">
-                    <strong>Email:</strong> <br>
-                    miguel.james@example.com
-                </div>
-                <div class="mb-3">
-                    <strong>Student ID:</strong> <br>
-                    2023-0001
-                </div>
-                <div class="mb-3">
-                    <strong>Year Level:</strong> <br>
-                    3rd Year
-                </div>
-                
-                <div class="mt-4">
-                    <a href="{{ url('/students') }}" class="btn btn-outline-secondary">Back to List</a>
-                </div>
-            </div>
+    <h2 class="text-2xl font-extrabold text-red-800 mb-6 tracking-tight">Student Profile</h2>
+    
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 py-6 border-t border-red-100">
+        <div>
+            <label class="text-xs font-bold uppercase text-red-600 tracking-widest">Full Name</label>
+            <p class="text-lg text-slate-900 font-semibold">{{ $student->name }}</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold uppercase text-red-600 tracking-widest">Email Address</label>
+            <p class="text-lg text-slate-900 font-semibold">{{ $student->email }}</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold uppercase text-red-600 tracking-widest">Course</label>
+            <p class="text-lg text-slate-900 font-semibold">{{ $student->course }}</p>
+        </div>
+        <div>
+            <label class="text-xs font-bold uppercase text-red-600 tracking-widest">Year Level</label>
+            <p class="text-lg text-slate-900 font-semibold">{{ $student->year_level }}</p>
         </div>
     </div>
-</div>
-@endsection
+
+    <div class="mt-10">
+        <a href="/students" class="inline-block bg-slate-100 text-slate-700 px-6 py-2.5 rounded-lg font-bold hover:bg-slate-200 transition shadow-sm active:scale-95 text-sm uppercase tracking-wide">
+            ← Back to Student List
+        </a>
+    </div>
+@stop

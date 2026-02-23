@@ -1,47 +1,42 @@
 @extends('layout')
 
-@section('title', 'Student List')
-
 @section('content')
-<div class="d-flex justify-content-between align-items-center mb-4">
-    <h2 class="text-primary-custom">Student List</h2>
-    <a href="{{ url('/students/create') }}" class="btn btn-success shadow-sm">
-        <i class="bi bi-plus-lg me-1"></i> Add New Student
+<div class="flex justify-between items-center mb-8">
+    <h2 class="text-2xl font-bold text-slate-800">Student Directory</h2>
+    <a href="/students/create" class="bg-red-600 text-white px-6 py-2.5 rounded-lg font-bold hover:bg-red-700 transition shadow-md active:transform active:scale-95">
+        + ADD NEW STUDENT
     </a>
 </div>
 
-<div class="card shadow-sm border-0">
-    <div class="card-body p-0">
-        <table class="table table-striped table-hover mb-0">
-            <thead style="background-color: #2c3e50; color: white;">
-                <tr>
-                    <th class="py-3 px-4">Name</th>
-                    <th class="py-3">Course</th>
-                    <th class="py-3">Year Level</th>
-                    <th class="py-3">Actions</th>
-                </tr>
-            </thead>
-            <tbody>
-                @if($students->count() > 0)
-                    @foreach ($students as $student)
-                    <tr>
-                        <td class="px-4 fw-bold">{{ $student->name }}</td>
-                        <td>{{ $student->course }}</td>
-                        <td>{{ $student->year_level }}</td>
-                        <td>
-                            <x-action-btn :id="$student->id" />
-                        </td>
-                    </tr>
-                    @endforeach
-                @else
-                    <tr>
-                        <td colspan="4" class="text-center py-4 text-muted">
-                            No students found. Click "Add New Student" to create one.
-                        </td>
-                    </tr>
-                @endif
-            </tbody>
-        </table>
-    </div>
+<div class="overflow-x-auto">
+    <table class="w-full">
+        <thead>
+            <tr class="text-left text-sm font-bold text-red-800 uppercase tracking-widest border-b-2 border-red-100">
+                <th class="px-6 py-4">Name</th>
+                <th class="px-6 py-4">Email</th>
+                <th class="px-6 py-4">Course</th>
+                <th class="px-6 py-4 text-center">Actions</th>
+            </tr>
+        </thead>
+        <tbody class="divide-y divide-slate-100">
+            @foreach($students as $student)
+            <tr class="hover:bg-red-50/50 transition">
+                <td class="px-6 py-4 font-semibold text-slate-700">{{ $student->name }}</td>
+                <td class="px-6 py-4 text-slate-500">{{ $student->email }}</td>
+                <td class="px-6 py-4 text-slate-500">{{ $student->course }}</td>
+                <td class="px-6 py-4 text-center">
+                    <div class="inline-flex gap-2">
+                        <a href="/students/{{ $student->id }}" class="bg-slate-100 text-slate-700 px-4 py-1.5 rounded-md text-xs font-bold hover:bg-slate-200 transition">
+                            VIEW
+                        </a>
+                        <a href="/students/{{ $student->id }}/edit" class="bg-red-100 text-red-700 px-4 py-1.5 rounded-md text-xs font-bold hover:bg-red-600 hover:text-white transition">
+                            EDIT
+                        </a>
+                    </div>
+                </td>
+            </tr>
+            @endforeach
+        </tbody>
+    </table>
 </div>
-@endsection
+@endsection 

@@ -4,31 +4,22 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>@yield('title', 'Student Portal')</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
-    <style>
-        body { background-color: #f8f9fa; }
-        .navbar { background-color: #2c3e50 !important; }
-        .text-primary-custom { color: #2c3e50; }
-    </style>
+    <script src="https://cdn.tailwindcss.com"></script>
 </head>
-<body>
-
-    <nav class="navbar navbar-expand-lg navbar-dark mb-4">
-        <div class="container">
-            <a class="navbar-brand" href="{{ url('/') }}">Student Portal</a>
-            <div class="collapse navbar-collapse">
-                <ul class="navbar-nav ms-auto">
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/') }}">Home</a></li>
-                    <li class="nav-item"><a class="nav-link" href="{{ url('/students') }}">Students</a></li>
-                </ul>
+<body class="bg-slate-50 text-slate-800">
+    <nav class="bg-red-800 p-4 text-white shadow-md">
+        <div class="container mx-auto flex justify-between items-center">
+            <h1 class="font-bold text-xl uppercase tracking-wider">Student Portal</h1>
+            <div class="flex space-x-2 text-sm font-medium">
+                <a href="/home" class="px-4 py-2 rounded-lg hover:bg-red-700 transition duration-200">Home</a>
+                <a href="/students" class="px-4 py-2 rounded-lg hover:bg-red-700 transition duration-200">Students</a>
+                <a href="/students/create" class="px-4 py-2 rounded-lg bg-red-900 hover:bg-black transition duration-200">Add Student</a>
             </div>
         </div>
     </nav>
 
-    <div class="container">
+    <main class="container mx-auto mt-10 p-8 bg-white rounded-xl shadow-lg border border-red-100">
         @yield('content')
-    </div>
-
+    </main>
 </body>
 </html>

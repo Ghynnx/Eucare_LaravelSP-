@@ -3,38 +3,48 @@
 @section('title', 'Edit Student')
 
 @section('content')
-<div class="row justify-content-center">
-    <div class="col-md-6">
-        <div class="card shadow-sm border-0">
-            <div class="card-header card-header-custom">
-                <h4 class="mb-0">Edit Student</h4>
-            </div>
-            <div class="card-body p-4">
-                <form>
-                    <div class="mb-3">
-                        <label class="form-label">Full Name</label>
-                        <input type="text" class="form-control" value="Miguel James">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Email</label>
-                        <input type="email" class="form-control" value="miguel.james@example.com">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Course</label>
-                        <input type="text" class="form-control" value="BS Computer Science">
-                    </div>
-                    <div class="mb-3">
-                        <label class="form-label">Year Level</label>
-                        <input type="number" class="form-control" value="3">
-                    </div>
-                    
-                    <div class="d-flex justify-content-end">
-                        <a href="{{ url('/students') }}" class="btn btn-secondary me-2">Cancel</a>
-                        <button type="button" class="btn btn-primary">Update Records</button>
-                    </div>
-                </form>
-            </div>
-        </div>
+<h2 class="text-2xl font-extrabold text-red-800 mb-6 tracking-tight">Edit Student Profile</h2>
+
+<form action="/students/{{ $student->id }}" method="POST" class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    @csrf
+    @method('PUT')
+
+    <div>
+        <label class="block text-sm font-bold text-slate-700 mb-1">Full Name</label>
+        <input type="text" name="name" value="{{ $student->name }}"
+            class="w-full border-red-100 border-2 rounded-lg p-2.5 focus:border-red-500 focus:outline-none transition-colors">
     </div>
-</div>
-@endsection
+    <div>
+        <label class="block text-sm font-bold text-slate-700 mb-1">Email Address</label>
+        <input type="email" name="email" value="{{ $student->email }}"
+            class="w-full border-red-100 border-2 rounded-lg p-2.5 focus:border-red-500 focus:outline-none transition-colors">
+    </div>
+    <div>
+        <label class="block text-sm font-bold text-slate-700 mb-1">Course</label>
+        <input type="text" name="course" value="{{ $student->course }}"
+            class="w-full border-red-100 border-2 rounded-lg p-2.5 focus:border-red-500 focus:outline-none transition-colors">
+    </div>
+    <div>
+        <label class="block text-sm font-bold text-slate-700 mb-1">Year Level</label>
+        <select name="year_level"
+            class="w-full border-red-100 border-2 rounded-lg p-2.5 focus:border-red-500 focus:outline-none bg-white transition-colors">
+            <option value="1st Year" {{ $student->year_level == '1st Year' ? 'selected' : '' }}>1st Year</option>
+            <option value="2nd Year" {{ $student->year_level == '2nd Year' ? 'selected' : '' }}>2nd Year</option>
+            <option value="3rd Year" {{ $student->year_level == '3rd Year' ? 'selected' : '' }}>3rd Year</option>
+            <option value="4th Year" {{ $student->year_level == '4th Year' ? 'selected' : '' }}>4th Year</option>
+        </select>
+    </div>
+
+    <div class="md:col-span-2 space-x-3 mt-4 border-t border-red-50 pt-6">
+        <button type="submit"
+            class="bg-red-600 text-white px-8 py-2.5 rounded-lg hover:bg-red-700 transition-all font-bold shadow-md active:scale-95 uppercase tracking-wide">
+            Update Record
+        </button>
+        
+        <a href="/students"
+            class="bg-slate-100 text-slate-600 px-8 py-2.5 rounded-lg hover:bg-slate-200 transition-all font-bold text-sm uppercase">
+            Cancel
+        </a>
+    </div>
+</form>
+@stop
